@@ -1,0 +1,38 @@
+{
+  "name": "qlhs",
+  "version": "1.0.0",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/server.js",
+    "dev": "vite",
+    "build": "vite build",
+    "wsass": "gulp watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "jspdf": "^2.5.2",
+    "mongoose": "^8.6.3",
+    "msnodesqlv8": "^4.2.1",
+    "mssql": "^11.0.1",
+    "postcss": "^8.4.47",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "gulp": "^5.0.0",
+    "gulp-sass": "^5.1.0",
+    "nodemon": "^3.1.5",
+    "sass": "^1.79.1",
+    "tailwindcss": "^3.4.12",
+    "vite": "^5.4.6"
+  }
+}
