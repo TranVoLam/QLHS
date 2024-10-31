@@ -12,18 +12,20 @@ export default function ScoreTable() {
     }
 
     const [data, setData] = useState([])
+    const [dataEdited, setDataEdited] = useState({})
     const [class_id, setClassId] = useState('')
     const [subject_id, setSubjectId] = useState('t6')
     const [text, setText] = useState('')
     const [edit, setEdit] = useState(false)
+    const [disabled, setDisabled] = useState(true)
     const [student_id, SetStudentId] = useState('')
     const [save, setSave] = useState(false)
     const [score, setScore] = useState({
-        s_1_1: '',
-        s_1_2: '',
-        s_1_3: '',
-        S_2: '',
-        s_3: '',
+        f_score_coefficient_1: '',
+        s_score_coefficient_1: '',
+        t_score_coefficient_1: '',
+        score_coefficient_2: '',
+        score_final: '',
         subject_id: subject_id,
         student_id: ''
     })
@@ -51,7 +53,6 @@ export default function ScoreTable() {
     useEffect(() => {
         if (save) {
             updateAPI()
-            selectAPI()
         }
     }, [save])
 
@@ -63,6 +64,14 @@ export default function ScoreTable() {
     }, [student_id])
 
 
+    useEffect(() => {
+        if (!isNaN(text) && text != "") {
+            const i = parseInt(text) - 1
+            if (i >= 0 && i < data.length)
+                setDisabled(false)
+        } 
+        else setDisabled(true)
+    }, [text])
 
     const updateAPI = async() => {
         try {
@@ -73,25 +82,26 @@ export default function ScoreTable() {
     }
 
     useEffect(() => {
-        console.log(save)
-    }, [save])
-    useEffect(() => {
-        if (text != "")
-            console.log(text)
-    }, [text])
+        console.log("edit: ",dataEdited)
+        console.log("data: ",data[parseInt(text)-1])
+    }, [dataEdited])
 
     const handleChangeCells = (e) => {
         const { name, value } = e.target
-        setScore({...score, [name]: value})
+        if (!isNaN(parseFloat(value)) || value == "") {
+            setScore({...score, [name]: value})
+            setDataEdited({...data[parseInt(text) - 1], [name]: value})
+        } 
+    }
+
+    const UpdateData = (id, newData) => {
+        setData(data => data.map(item => (item.student_id === id) ? {...item, ...newData} : item))
     }
 
     const handleClickSave = () => {
-        if (!isNaN(text)) {
-            const i = parseInt(text) - 1
-            if (i >= 0 && i < data.length) {
-                SetStudentId(data[i].student_id)
-            }
-        }
+        const i = parseInt(text) - 1
+        SetStudentId(data[i].student_id)
+        UpdateData(dataEdited.student_id, dataEdited)
         setEdit(false)
     }
 
@@ -129,9 +139,6 @@ export default function ScoreTable() {
         setClassId(e.target.value)
     }
 
-    function handleNothing() {
-        
-    }
 
     return (
         <>
@@ -187,10 +194,10 @@ export default function ScoreTable() {
                     : (<p className="text-lg font-semibold ms-5">Lớp hiện tại {class_id}</p>)}
                     <input type="text" style={{marginLeft: '32px'}} className="normal" 
                     placeholder="Nhập số cần sửa" disabled={edit} value={text} onChange={handleChangeText}/>
-                    { !edit ? (<button type="button" className="ms-8" onClick={handleClickSetEdit}>Sửa</button>) : (
+                    { !edit ? (<button type="button" className="ms-8" onClick={handleClickSetEdit} disabled={disabled}>
+                        Sửa</button>) : (
                         <button type="button" className="text-white bg-red-500 ms-8" onClick={handleClickSetEdit}
-                        id ="cancel">
-                            Huỷ</button>
+                        id ="cancel">Huỷ</button>
                     )} 
                     { edit ? (<button type="button" className="bg-green-400 shadow-md shadow-green-500/50 ms-8 hover:bg-green-700" 
                     onClick={handleClickSave}>Lưu</button>) : (
@@ -210,38 +217,38 @@ export default function ScoreTable() {
                             <th>Điểm hệ số 1 lần 2</th>
                             <th>Điểm hệ số 1 lần 3</th>
                             <th>Điểm hệ giữa kỳ </th>
-                            <th>Điểm hệ cuối kỳ </th>
-                            <th>Điểm hệ trung bình </th>
+                            <th>Điểm cuối kỳ </th>
+                            <th>Điểm trung bình </th>
                             <th>Học kỳ</th>
                             <th>Năm học</th>
                         </tr>
                     </thead>
                     <tbody className="text-center">
                         {data != null && Array.isArray(data) ? data.map((score, index) => 
-                        (<tr key={index} style={edit && text == (index + 1) ? {outline: '1px solid blue'} : {outline: 'none'}}>
+                        (<tr key={index} style={edit && text == (index + 1) ? {outline: '3px dashed blue'} : {outline: 'none'}}>
                             <td>{index + 1}</td>
                             <td>{score.student_id}</td>
                             <td>{score.full_name}</td>
                             <td>{score.gender}</td>
                             <td>{score.class_id}</td>
-                            <td>{edit && text == (index + 1) ? (<input name="s_1_1" style={styleInputCell}
+                            <td>{edit && text == (index + 1) ? (<input name="f_score_coefficient_1" style={styleInputCell}
                             defaultValue={score.f_score_coefficient_1} onChange={handleChangeCells}/>) 
                             : (<span>{score.f_score_coefficient_1}</span>)}
                             </td>
-                            <td>{edit && text == (index + 1) ? (<input name="s_1_2" style={styleInputCell}
+                            <td>{edit && text == (index + 1) ? (<input name="s_score_coefficient_1" style={styleInputCell}
                             defaultValue={score.s_score_coefficient_1} onChange={handleChangeCells}/>) 
                             : (<span>{score.s_score_coefficient_1}</span>)}</td>
-                            <td>{edit && text == (index + 1) ? (<input name="s_1_3" style={styleInputCell}
+                            <td>{edit && text == (index + 1) ? (<input name="t_score_coefficient_1" style={styleInputCell}
                             defaultValue={score.t_score_coefficient_1} onChange={handleChangeCells}/>) 
                             : (<span>{score.t_score_coefficient_1}</span>)}</td>
-                            <td>{edit && text == (index + 1) ? (<input name="s_2" style={styleInputCell}
+                            <td>{edit && text == (index + 1) ? (<input name="score_coefficient_2" style={styleInputCell}
                             defaultValue={score.score_coefficient_2} onChange={handleChangeCells}/>) 
                             : (<span>{score.score_coefficient_2}</span>)}</td>
-                            <td>{edit && text == (index + 1) ? (<input name="s_3" style={styleInputCell}
+                            <td>{edit && text == (index + 1) ? (<input name="score_final" style={styleInputCell}
                             defaultValue={score.score_final} onChange={handleChangeCells}/>) 
                             : (<span>{score.score_final}</span>)}</td>
                             <td>{score.avarage_score}</td>
-                            <td>{score.term}</td>
+                            <td style={{textAlign: 'center'}}>{score.term}</td>
                             <td>{score.academic_year}</td>
                         </tr>)) : <tr></tr>}
                     </tbody>

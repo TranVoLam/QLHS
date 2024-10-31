@@ -11,8 +11,7 @@ exports.getScores = async(req,res) => {
 
 exports.updateScore = async(req,res) => {
     try {
-        // await scoreModel.updateScore(req.body)
-        console.log(req.body)
+        await scoreModel.updateScore(req.body)
     } catch(err) {
         console.log(`controller update: ${err}`)
     }

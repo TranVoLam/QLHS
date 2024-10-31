@@ -25,23 +25,23 @@ exports.updateScore = async(req_body) => {
         const params = {
             s_1_1: {
                 type: db.types.decimal,
-                value: req_body.s_1_1 
+                value: req_body.f_score_coefficient_1 
             },
             s_1_2: {
                 type: db.types.decimal,
-                value: req_body.s_1_2
+                value: req_body.s_score_coefficient_1
             },
             s_1_3: {
                 type: db.types.decimal,
-                value: req_body.s_1_3
+                value: req_body.t_score_coefficient_1
             },
             S_2: {
                 type: db.types.decimal,
-                value: req_body.s_2
+                value: req_body.score_coefficient_2
             },
             s_3: {
                 type: db.types.decimal,
-                value: req_body.s_3
+                value: req_body.score_final
             }, 
             subject_id: {
                 type: db.types.varchar(5),
