@@ -1,4 +1,3 @@
-const { json } = require('express')
 const recordModel = require('./recordModel')
 
 exports.getStudentRecords = async(req, res) => {

@@ -75,7 +75,8 @@ module.exports = {
         date: sql.Date,
         bit: sql.Bit,
         varchar,
-        nvarchar
+        nvarchar,
+        decimal: sql.Decimal(4,2)
     }
 }
 

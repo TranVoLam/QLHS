@@ -17,10 +17,6 @@ export default function StudentRecords() {
         setData(response.data)
     }
 
-    const handleSelectClass = (e) => {
-        setClassId(e.target.value)
-    }
-
     const handleSelectClass6 = (e) => {
         setClassId6(e.target.value)
         callAPI(e.target.value)

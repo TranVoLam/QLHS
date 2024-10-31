@@ -100,7 +100,7 @@ export default function Form() {
                                         <span className="text-red-500"> *</span></label>
                                     <br />
                                     <input type="text" name="full_name" id="full_name" required 
-                                    placeholder="Nhập họ và tên" maxLength={50}
+                                    placeholder="Nhập họ và tên" maxLength={50} className="normal"
                                     onChange={postGeneralInfos} onBlur={postGeneralInfos}/>
                                 </div>
                                 <div>
@@ -108,7 +108,7 @@ export default function Form() {
                                         <span className="text-red-500"> *</span></label>
                                     <br />
                                     <input type="date" name="date_of_birth" id="date_of_birth" required
-                                    onChange={postGeneralInfos} onBlur={postGeneralInfos}/>
+                                    className="normal" onChange={postGeneralInfos} onBlur={postGeneralInfos}/>
                                 </div>
                                 <div>
                                     <label htmlFor="gender">Giới tính
@@ -141,25 +141,29 @@ export default function Form() {
                                     <label htmlFor="ethnicity">Dân tộc</label>
                                     <br />
                                     <input type="text" name="ethnicity" placeholder="Dân tộc..." id="ethnicity" 
-                                    maxLength={12} onChange={postGeneralInfos} onBlur={postGeneralInfos}/>
+                                    maxLength={12} onChange={postGeneralInfos} className="normal"
+                                    onBlur={postGeneralInfos}/>
                                 </div>
                                 <div>
                                     <label htmlFor="religion">Tôn giáo</label>
                                     <br />
                                     <input type="text" name="religion" id="religion" placeholder="Tôn giáo..."
-                                    maxLength={50} onChange={postGeneralInfos} onBlur={postGeneralInfos}/>
+                                    maxLength={50} onChange={postGeneralInfos} className="normal"
+                                    onBlur={postGeneralInfos}/>
                                 </div>
                                 <div>
                                     <label htmlFor="email">Email</label>
                                     <br />
                                     <input type="email" name="email" id="email" placeholder="example@gmail.com"
-                                    maxLength={40} onChange={postGeneralInfos} onBlur={postGeneralInfos}/>
+                                    maxLength={40} onChange={postGeneralInfos} className="normal"
+                                    onBlur={postGeneralInfos}/>
                                 </div>
                                 <div>
                                     <label htmlFor="phone">Số điện thoại</label>
                                     <br />
                                     <input type="tel" name="phone" id="phone" placeholder="Số cá nhân"
-                                    maxLength={11} onChange={postGeneralInfos} onBlur={postGeneralInfos}/>
+                                    maxLength={11} onChange={postGeneralInfos} className="normal"
+                                    onBlur={postGeneralInfos}/>
                                 </div>
                             </div>
                             <div className="mt-5">
@@ -180,7 +184,7 @@ export default function Form() {
                                 </select>
                             </div>
                         </div>
-                        <button type="button" onClick={postData}>Lưu</button>
+                        <button type="button" id="save" onClick={postData}>Lưu</button>
                     </div>
                 </form>
             </div>
