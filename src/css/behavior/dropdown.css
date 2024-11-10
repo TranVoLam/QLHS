@@ -1,0 +1,63 @@
+.dropdown {
+    position: relative;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: whitesmoke;
+    width: 100%;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.dropdown_header {
+    padding: 1px 3px;
+}
+
+.dropdown_header:hover {
+    cursor: pointer;
+    background-color: rgb(223, 223, 247);
+}
+
+.dropdown_list {
+    border-radius: 3px;
+    border: 1px solid black;
+    padding: 1px 3px;   
+    position: absolute;
+    background: white;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.dropdown_list::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+.dropdown_list::-webkit-scrollbar-thumb {
+    background-color: rgb(153, 153, 153);
+    border-radius: 5px;
+}
+
+.dropdown_option:hover {
+    cursor: pointer;
+    background-color: aliceblue;
+}
+
+.btn_delete {
+    cursor: pointer;
+    padding: 2px 4px;
+    background-color: rgb(218, 49, 49);
+    border: 1px solid rgb(168, 37, 37);
+    border-radius: 2px;
+    color: white;
+}
+
+.btn_delete:hover {
+    background-color: rgb(233, 39, 39);
+    border: 1px solid rgb(184, 32, 32);
+}
+
+.btn_delete:active {
+    background-color: rgb(226, 25, 25);
+    border: 1px solid rgb(199, 19, 19);
+}

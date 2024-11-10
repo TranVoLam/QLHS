@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios'
 import Header from "../layout/header";
+import "../../css/post_score/scoreTable.css"
 
 
 export default function ScoreTable() {
@@ -191,28 +192,25 @@ export default function ScoreTable() {
                         <option value="cn6">Công nghệ 6</option>
                     </select>
                     {class_id == '' ? (<p className="text-lg font-semibold ms-5">Tất cả học sinh</p>) 
-                    : (<p className="text-lg font-semibold ms-5">Lớp hiện tại {class_id}</p>)}
+                    : (<p className="text-lg font-semibold ms-5">Lớp hiện tại: {class_id}</p>)}
                     <input type="text" style={{marginLeft: '32px'}} className="normal" 
                     placeholder="Nhập số cần sửa" disabled={edit} value={text} onChange={handleChangeText}/>
-                    { !edit ? (<button type="button" className="ms-8" onClick={handleClickSetEdit} disabled={disabled}>
-                        Sửa</button>) : (
-                        <button type="button" className="text-white bg-red-500 ms-8" onClick={handleClickSetEdit}
-                        id ="cancel">Huỷ</button>
+                    { !edit ? (<button type="button" className="bg-blue-600/70" onClick={handleClickSetEdit} disabled={disabled}
+                    id="edit" >Sửa</button>) : (
+                        <button type="button"  onClick={handleClickSetEdit} id ="cancel">Huỷ</button>
                     )} 
-                    { edit ? (<button type="button" className="bg-green-400 shadow-md shadow-green-500/50 ms-8 hover:bg-green-700" 
-                    onClick={handleClickSave}>Lưu</button>) : (
-                        <button type="button" className="ms-8" disabled id="dis">Lưu</button>
-                    )} 
+                    <button type="button" id="button_save" onClick={handleClickSave} disabled={!edit}>Lưu</button>
                 </div>
-                <div className="w-full overflow-auto" id="studentRecords">
-                    <table className="w-full table-auto" id="studentRecords">
+                <div className="w-full overflow-auto" id="table">
+                    <table className="w-full table-auto" id="table">
                     <thead>
                         <tr>
                             <th>STT</th>
                             <th>Mã học sinh</th>
                             <th>Họ và tên</th>
+                            <th>Ngày sinh</th>
                             <th>Giới tính</th>
-                            <th>Lớp học</th>
+                            {class_id == '' && <th>Lớp học</th>}
                             <th>Điểm hệ số 1 lần 1</th>
                             <th>Điểm hệ số 1 lần 2</th>
                             <th>Điểm hệ số 1 lần 3</th>
@@ -224,13 +222,14 @@ export default function ScoreTable() {
                         </tr>
                     </thead>
                     <tbody className="text-center">
-                        {data != null && Array.isArray(data) ? data.map((score, index) => 
+                        {data != null && Array.isArray(data) && data.map((score, index) => 
                         (<tr key={index} style={edit && text == (index + 1) ? {outline: '3px dashed blue'} : {outline: 'none'}}>
                             <td>{index + 1}</td>
                             <td>{score.student_id}</td>
                             <td>{score.full_name}</td>
+                            <td>{score.date_of_birth.slice(0,10)}</td>
                             <td>{score.gender}</td>
-                            <td>{score.class_id}</td>
+                            {class_id == '' && <td>{score.class_id}</td>}
                             <td>{edit && text == (index + 1) ? (<input name="f_score_coefficient_1" style={styleInputCell}
                             defaultValue={score.f_score_coefficient_1} onChange={handleChangeCells}/>) 
                             : (<span>{score.f_score_coefficient_1}</span>)}
@@ -250,7 +249,7 @@ export default function ScoreTable() {
                             <td>{score.avarage_score}</td>
                             <td style={{textAlign: 'center'}}>{score.term}</td>
                             <td>{score.academic_year}</td>
-                        </tr>)) : <tr></tr>}
+                        </tr>))}
                     </tbody>
                     </table>
                 </div>

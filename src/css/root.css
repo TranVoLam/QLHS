@@ -19,7 +19,7 @@
 }
 
 
-input.normal, select {
+.normal, select {
     border: 1px rgba(94, 94, 221, 0.664) solid;
     border-radius: 5px;
     margin-top: 5px;
@@ -27,7 +27,7 @@ input.normal, select {
 }
 
 
-input.normal:focus, select:focus {
+.normal:focus, select:focus {
     border: none;
     outline: 1px blue solid;
     box-shadow: 1.5px 1.5px 2px 2px rgb(0, 119, 255);
@@ -39,52 +39,25 @@ input::placeholder {
 }
 
 select {
-    cursor: pointer
+    cursor: pointer;
+    overflow-y: auto;
 }
 
 button {
-    border: 1px solid rgb(30, 30, 209);
-    padding: 2px 4px;
-    width: 60px;
-    background-color: rgb(52, 52, 189, 0.5);
+    padding: 3px 8px;
     border-radius: 7px;
-    color: ghostwhite;
 }
 
-#save {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-
-button:hover {
-    background-color: rgba(49, 49, 204, 0.5) ;
-    outline: 1px rgb(1, 1, 100, 0.4) solid;
-    box-shadow: 1px 1px 1.5px 1.5px rgb(1, 1, 100, 0.4);
-}
-
-#cancel:hover {
-    background-color: rgb(233, 58, 58) ;
-    outline: 1px solid red;
-    box-shadow: 1px 1px 0.5px 0.5px rgb(233, 58, 58 / 0.5);
-}
-
-#dis:hover {
-    outline: none;
-    box-shadow: none;
-}
-
-#studentRecords::-webkit-scrollbar {
+#table::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
 
-#studentRecords::-webkit-scrollbar-track {
+#table::-webkit-scrollbar-track:hover {
     background-color: rgb(218, 210, 210);
 }
 
-#studentRecords::-webkit-scrollbar-thumb {
+#table::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: rgb(153, 153, 153);
 }
@@ -112,7 +85,7 @@ th, td {
     cursor: pointer
 }
 
-#studentRecords {
+table {
     max-height: 500px
 }
 

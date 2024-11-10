@@ -7,7 +7,7 @@ import StudentRecords from './components/studentRecords';
 import Form from './components/add-student/form';
 import ScoreTable from './components/post_score/ScoreTable';
 import WeeklyConductTable from './components/weekly-conduct/weeklyConductTable';
-import AttendanceTable from './components/attendance/attendanceTable';
+import BehaviorTable from './components/behavior/behaviorTable';
 
 const route = createBrowserRouter([{
     path: '/',
@@ -26,8 +26,8 @@ const route = createBrowserRouter([{
             element: <ScoreTable/>
         },
         {
-            path: '/attendance',
-            element: <AttendanceTable/>
+            path: '/behavior',
+            element: <BehaviorTable/>
         },
         {
             path: '/weekly-conduct',

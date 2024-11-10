@@ -1,0 +1,15 @@
+#save {
+    width: 60px;
+    border: 1px solid rgb(30, 30, 209);
+    position: relative;
+    color: ghostwhite;
+    left: 50%;
+    background-color: rgb(52, 52, 189, 0.5);
+    transform: translateX(-50%);
+}
+
+#save:hover {
+    background-color: rgba(49, 49, 204, 0.5) ;
+    outline: 1px rgb(1, 1, 100, 0.4) solid;
+    box-shadow: 1px 1px 1.5px 1.5px rgb(1, 1, 100, 0.4);
+}

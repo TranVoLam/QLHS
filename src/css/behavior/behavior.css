@@ -1,0 +1,18 @@
+#button_save {
+    justify-self: start;
+}
+
+.noted {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.noted:hover {
+    background-color: rgb(44 44 182 / 0.5);
+    color: white
+}
+
+.noted:active {
+    background-color: rgba(37, 37, 189, 0.5);
+    color: whitesmoke;
+}

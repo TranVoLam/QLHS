@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 import Header from "../layout/header";
+import "../../css/add-student/form.css"
 
 
 export default function Form() {
@@ -55,19 +56,6 @@ export default function Form() {
             const response = await axios.post('/api/students/post', generalInfos)
             
             if(response.data == '') {
-                const newGeneralInfos = Object.keys(generalInfos).reduce((ob, key) => {
-                    if (key == 'gender')
-                        ob[key] = 'Nữ'
-                    else if (key == 'nationality')
-                        ob[key] = 'Việt Nam'
-                    else if (key == 'class_id')
-                        ob[key] = '6A'
-                    else ob[key] = ''
-                    return ob
-                }, {})
-                
-                setGeneralInfos(newGeneralInfos)
-                console.log(response.data)
                 alert('OK')
             } else if(response.data != '') {
                 const data = Object.values(response.data)
@@ -114,7 +102,7 @@ export default function Form() {
                                     <label htmlFor="gender">Giới tính
                                         <span className="text-red-500"> *</span></label>
                                     <br />
-                                    <select name="gender" id="gender" required 
+                                    <select name="gender" id="gender" required
                                     onChange={postGeneralInfos} onBlur={postGeneralInfos}>
                                         <option value="Nữ" className="text-red-600">Nữ</option>
                                         <option value="Nam" className="text-blue-600">Nam</option>
@@ -176,11 +164,7 @@ export default function Form() {
                                     <option value="6C">6C</option>
                                     <option value="6D">6D</option>
                                     <option value="6E">6E</option>
-                                    <option value="7A">7A</option>
-                                    <option value="7B">7B</option>
-                                    <option value="7C">7C</option>
-                                    <option value="7D">7D</option>
-                                    <option value="7E">7E</option>
+                                    <option value="6G">6G</option>
                                 </select>
                             </div>
                         </div>
